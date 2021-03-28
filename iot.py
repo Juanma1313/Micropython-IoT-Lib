@@ -8,9 +8,10 @@ logger = logging.getLogger(__name__)   # Gets the logger that should be stablish
 logger.level=logging.DEBUG
 logger.log(logging.DEBUG,"Module [{}] loading",__name__)
 
-import io, ts, json, time, network, machine, binascii, os, sys
-import msgs
+import ts, msgs
 from MQTT_slim import MQTTClient     
+
+import io,json, time, network, machine, binascii, os, sys
 
 NETWORK_STATE={
     network.STAT_IDLE: "STAT_IDLE",
@@ -33,82 +34,14 @@ EVT_MQTT_Unknown	=const(0)
 EVT_MQTT_rcv_msg	=const(1)
 EVT_Sensor_Push_data=const(2)
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 __author__ = "Juan Manuel de las Heras"
 __license__ = "Apache-2.0"
-'''Device_tree descriptor dictionary structure:
-class Device():
-	pass
-class Sensor():
-	pass
-class Device_eye(Device):
-	pass
-class Device_oxi(Device):
-	pass
-class Sensor_butt(Sensor): # button sensor
-	def Sleep(self):
-		pass
-	def Send(self):
-		pass
-class Sensor_Joy(Sensor):# joystick sensor
-	pass
-class Sensor_max(Sensor): # oximeter sensor
-	def Heartrate(self):
-		pass
-	def spo2(self):
-		pass
-	def temperature(self):
-		pass
-class Sensor_led(Sensor): # rgb led sensor
-	def led1(self):
-		pass
-	def led2(self):
-		pass
 
-device_tree={
-		"Name":"oximeter_01",
-		"registration":{
-			name=self.name,
-			id=self.id,
-			type=self.type
-			root_topic=self._device_subscription
-			},
-		"Object":Device_oxi(),
-		"sensors":{
-			"oximeter":{
-				"Name":"oximeter",
-				"object":Sensor_max(),
-				"Values":{
-					"rate":Sensor_max().Heartrate,
-					"spo2":Sensor_max().spo2,
-					"temp":Sensor_max().temperature,
-					}
-				},
-			"buttons":{
-				"Name":"buttons",
-				"object":Sensor_butt(),
-				"Values":{
-					"Sleep":Sensor_butt().Sleep,
-					"Send":Sensor_butt().Send
-					}
-				},
-			"leds":{
-				"Name":"LEDS",
-				"object":Sensor_led(),
-				"Values":{
-					"led1":Sensor_led().led1,
-					"led2":Sensor_led().led1
-					}
-				}
-			}
-		}
-'''
 #Special Dictionary Tree search functions formats
 IOT_MODE=const(0)	# for path input or output 	Example: "sensors/buttons/values"
 DIC_MODE=const(1)	# for path output ready for eval() function. Example: "['sensors']['buttons']['values']"
 
-# returns the key path to the first key that matches in a given dictionary tree		
-# If the key is used more than once in the dictionary tree, only the first match will be reported
 def find_key(dic, key, mode=IOT_MODE, level=0,  ):
     level+=1
     for k in dic.keys():
@@ -131,8 +64,6 @@ def find_key(dic, key, mode=IOT_MODE, level=0,  ):
                         return "['{}']{}".format(k,result )
     return ""
 
-# returns the key path to the first value match found in the dictionary tree		
-# If the value is references more than once in the dictionary tree, only the first match will be reported
 def find_val(dic, val, mode=IOT_MODE):
     for k, v in dic.items():
         #print("check({})".format((k, v)))
@@ -152,8 +83,6 @@ def find_val(dic, val, mode=IOT_MODE):
                         return "['{}']{}".format(k,result )
     return ""
 
-#returns a list of all key paths found in the dic tree dictionary, that leads to the given path
-# path is only supported in IOT_MODE, output is supported in both modes
 def find_path(dic, path, mode=IOT_MODE):
     retval=[]
     org = dic
@@ -172,20 +101,6 @@ def find_path(dic, path, mode=IOT_MODE):
                 list_paths(dic[k])
         return retval
     return list_paths(dic)
-'''find_path() use example:
-paths=find_path(device_tree, "values", DIC_MODE)
-for s in paths:
-    print("{}=".format(s), end="")
-    print("{}".format(eval("device_tree"+s)))
-
-Output:
-['sensors']['buttons']['values']={'sleep': False, 'send': False}
-['sensors']['leds']['values']={'led2': (255, 0, 0), 'led1': (255, 0, 0)}
-['sensors']['oximeter']['values']={'temp': 36.6, 'rate': 59, 'spo2': 99.99}
-
-'''
-
-            
 
 class Config:
     version=__version__

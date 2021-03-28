@@ -1,10 +1,12 @@
-#############################################
-## Lightweight MQTT client for MicroPython.##
-##                                         ##
-# from: micropython-lib/umqtt.simple/umqtt ##
-# by: Paul Sokolovsky 			           ##
-## Modified: Juanma	     				   ##
-#############################################
+##############################################
+## Lightweight MQTT client for MicroPython.	##
+##											##
+# from: micropython-lib/umqtt.simple/umqtt	##
+# Web: https://github.com/micropython/		##
+#  micropython-lib/tree/master/umqtt.simple	##
+# by: Paul Sokolovsky						##
+## Modified: Juanma							##
+##############################################
 import Logging as logging
 logger = logging.getLogger(__name__)
 logger.log(logging.DEBUG,"Module [{}] loading",__name__)
