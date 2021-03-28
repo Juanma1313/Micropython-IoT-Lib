@@ -252,12 +252,12 @@ Device tree functions:
 
 ``find_path()`` use example:
 ----------------------------
-	``paths=find_path(device_tree, "values", DIC_MODE)
+	paths=find_path(device_tree, "values", DIC_MODE)
 	for s in paths:
 		print("{}=".format(s), end="")
-		print("{}".format(eval("device_tree"+s)))``
+		print("{}".format(eval("device_tree"+s)))
 
-	Output:
+* Output:
 	['sensors']['buttons']['values']={'sleep': False, 'send': False}
 	['sensors']['leds']['values']={'led2': (255, 0, 0), 'led1': (255, 0, 0)}
 	['sensors']['oximeter']['values']={'temp': 36.6, 'rate': 59, 'spo2': 99.99}
