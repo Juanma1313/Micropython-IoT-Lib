@@ -1,12 +1,12 @@
-IoT library for Micropython
+﻿IoT library for Micro-python
 ===========================
-THIS LIBRERY IS UNDER CONSTRUCTION
+THIS LIBRARY IS UNDER CONSTRUCTION
 
-This project attrempts to create a small library that allows to easily 
-define sensors, controllers and all type of devices to controll or be 
+This project attempts to create a small library that allows to easily 
+define sensors, controllers and all type of devices to control or be 
 controlled trough a network in the IoT fashion.
 
-- This library is based on the folloging  set of assuptions:
+- This library is based on the following  set of assumptions:
 	* MQTT or similar protocol is being used for data transmission
 	* TCP-UDP is being used for network transport
 	* JSON format is used for data encapsulation.
@@ -114,43 +114,42 @@ Devices and Sensors handling
 
 Device:
 -------
-Is the highest herarquy of all IoT entity.
-It is capable to register to a brocker and send or receive information
-about state or operation of itselve or any sensor or controller owned 
-by itselve.
+Is the highest hierarchy of all IoT entity.
+It is capable to register to a broker and send or receive information
+about state or operation of itself or any sensor or controller owned 
+by itself.
 In this early version is not contemplated to have nested devices, but 
-the idea is not discarded for future versions. Devices are standalone 
+the idea is not discarded for future versions. Devices are stand-alone 
 entities each one define its own device_tree.
 
-Sensor and controlers:
+Sensor and controllers:
 ----------------------
-Is the next level of herarquy for IoT entitys. 
-It handles all data from/to a phisical or virtual sensor or device.
+Is the next level of hierarchy for IoT entities. 
+It handles all data from/to a physical or virtual sensor or device.
 Commands relayed by brokers will be processed by the corresponding 
-device and will be feed to the apropiate controller that will phisically
+device and will be feed to the appropriate controller that will physically
 contact with the controlled item.
-A device can host several sensors or controllers in a serie, but at this
+A device can host several sensors or controllers in a series, but at this
 point it cannot host them in a nested fashion.
 Sensors can produce data and events sync. or asynchronously, and it
 will be feed to the device for processing and possibly relaying it.
 Controllers can receive events and data from the device and act upon the
-phisicall unit accordingly.
+physical unit accordingly.
 It is possible to have a unit that because its nature can perform as a 
 sensor and as a controller that is why all sensors and controllers share
 the same class ``Sensor``
 
 Examples of physical sensors can be buttons, joysticks, temperature 
-sensors, humidity sensors, acelerometers, etc.
-Examples of controlls units can be leds, screens, servos, fans, motors, etc.
-Examples of phisicaly controller units can be LEDs, LED strips, screens, 
-fans, motors, etc.
-Examples of hibrid sensor/controller units can be servos, sonof switches, 
-oximeters, mpg players, etc.
+sensors, humidity sensors, touch sensors, accelerometers, etc.
+Examples of physically controlled units can be LEDs, LED strips, screens, 
+fans, motors, speakers, buzzers, etc.
+Examples of hybrid sensor/controller units can be servos, sonoff switches, 
+oximeters, mpg players, modems, house apliances, etc.
 
 Values:
 -------
 Is the basic unit of information handled from/to a sensor and can be 
-feeded as an event or synchronously pushed or pulled by the device.
+feed as an event or synchronously pushed or pulled by the device.
 
 Messages:
 ---------
@@ -164,7 +163,7 @@ Device tree
 This is an internal construction of the ``Device`` class in the form of 
 a tree of dictionaries where all the sensors and its values are organized
 the application can directly pull or push any Device/sensor value using 
-this tree and the device/sensor will act acordingly.
+this tree and the device/sensor will act accordingly.
 
 Device tree functions:
 ----------------------

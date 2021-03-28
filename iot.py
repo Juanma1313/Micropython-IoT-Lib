@@ -450,8 +450,4 @@ class Value:
             self._flg_push=False	# resets push flag if set
             return 0
 
-        
-        
-        
-
 logger.log(logging.DEBUG,"Module [{}] loaded",__name__)
