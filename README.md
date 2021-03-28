@@ -183,7 +183,8 @@ Device tree functions:
 	in both ``IOT_MODE`` and ``DIC_MODE`` modes.
 
 
-*Device_tree descriptor dictionary structure example:
+Device_tree descriptor dictionary structure example:
+----------------------------------------------------
 		class Device():
 			pass
 		class Sensor():
@@ -256,8 +257,8 @@ Device tree functions:
 	for s in paths:
 		print("{}=".format(s), end="")
 		print("{}".format(eval("device_tree"+s)))
-
-* Output:
+ 
+	Output:
 	['sensors']['buttons']['values']={'sleep': False, 'send': False}
 	['sensors']['leds']['values']={'led2': (255, 0, 0), 'led1': (255, 0, 0)}
 	['sensors']['oximeter']['values']={'temp': 36.6, 'rate': 59, 'spo2': 99.99}
